@@ -1,0 +1,20 @@
+kitty		# The terminal emulator
+fuzzel		# The application menu
+nautilus	# The file manager
+hypridle	# Lower brightnes s/ Show lockscreen after time
+hyprlock	# The lockscreen
+
+pipewire			# The soundsystem
+wireplumber			# The sound interface (wpctl)
+brightnessctl		# To change the screen brightness
+util-linux			# To change airplane mode (rfkill)
+xwayland-satellite	# Support for xwayland
+
+mako		# Notifications
+swaybg		# Desktop background support
+
+tlp			# Laptop power management
+
+
+# Optional
+wev			# Find out key/mouse names for niri config

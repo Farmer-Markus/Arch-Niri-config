@@ -1,0 +1,23 @@
+# man 5 mako
+
+# In ms
+default-timeout=4500
+
+# In px
+width=350
+border-size=7
+anchor=top-right
+
+background-color=#2E8B57E0
+border-color=#3CB371E0
+
+# For rounded corners
+border-radius=4
+
+# App groups
+group-by=app-name
+
+font=JetBrainsMono Nerd Font
+
+[grouped]
+format=<b>%s</b>\n%b

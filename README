@@ -1,0 +1,36 @@
+sudo systemctl disable --now power-profiles-daemon
+sudo systemctl mask power-profiles-daemon
+
+sudo pacman -S tlp
+sudo systemctl enable --now tlp
+
+
+
+
+/etc/tlp.conf:
+
+	# Modus für den Betrieb am Netzteil (AC)
+	INTEL_GPU_MIN_FREQ_ON_AC=0
+	ENERGY_PERF_POLICY_ON_AC=balance_performance
+	
+	# Modus für den Betrieb auf Akku (BAT)
+	ENERGY_PERF_POLICY_ON_BAT=balance_performance
+
+
+
+
+# TODO:
+	Notification manager:
+		- Notification timeout
+		- Notification design
+		- Notification keybinds/shortcuts
+		
+	Statusbar
+		- Clock
+		- Battery state
+		- System trays
+
+
+Good to know:
+	systemctl reboot --firmware-setup		# Reboot into bios/efi
+	cat /sys/power/mem_sleep				# Get/Set sleep state
