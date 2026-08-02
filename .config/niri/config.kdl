@@ -2,10 +2,25 @@
 
 spawn-at-startup "hypridle"
 spawn-sh-at-startup "swaybg -i ~/Bilder/Nature-Hills-Wallpaper.jpg -m fill"
+spawn-sh-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
 // spawn-sh-at-startup
 
 
 screenshot-path "~/Bilder/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"
+
+
+output "eDP-1" {
+	mode "1920x1080@60.020"
+	scale 1.25
+	position x=0 y=0
+}
+
+output "HDMI-A-2" {
+	// mode custom=true "1900x1800@60"
+	mode "1920x1080@60.000"
+	scale 1.75
+	position x=1536 y=0 // 1920 / 1.25 // resolution divided by scale
+}
 
 environment {
 	// To satisfy java applications
@@ -94,6 +109,8 @@ window-rule {
 	match app-id="kitty"
 	match app-id="atlauncher"
 	match app-id="codium"
+	match app-id="firefox" title=r#"^Mozilla Firefox$"#
+	match app-id="jetbrains-studio"
 	opacity 0.85
 }
 
@@ -125,6 +142,7 @@ binds {
 	Mod+D				{ spawn "fuzzel"; }
 	Mod+F				{ spawn "firefox"; }
 	Mod+Shift+F			{ spawn-sh "firefox --private-window"; }
+	Mod+Ctrl+F			{ spawn-sh "firefox --ProfileManager"; }
 	Mod+E				{ spawn "nautilus"; }
 	Mod+Shift+E 		{ spawn-sh "nautilus -w"; }
 
@@ -188,6 +206,11 @@ binds {
 	XF86AudioLowerVolume allow-when-locked=true		{ spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1- -l 0.0"; }
 	// Limit to 200%
 	XF86AudioRaiseVolume allow-when-locked=true		{ spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 2.0"; }
+
+	Ctrl+XF86AudioLowerVolume allow-when-locked=true	{ spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05- -l 0.0"; }
+	Ctrl+XF86AudioRaiseVolume allow-when-locked=true	{ spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 2.0"; }
+	
+
 	XF86AudioMicMute allow-when-locked=true			{ spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
 	XF86MonBrightnessDown allow-when-locked=true	{ spawn-sh "brightnessctl set 5%-"; }
