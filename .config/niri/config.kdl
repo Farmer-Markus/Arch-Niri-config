@@ -43,10 +43,11 @@ input {
 	touchpad {
 		tap
 		natural-scroll
+		// accel-speed 0.3
 	}
 
 	mouse {
-		natural-scroll
+		//natural-scroll
 	}
 
 	// warp-mouse-to-focus
@@ -117,6 +118,7 @@ window-rule {
 window-rule {
 	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
 	match app-id="com-atlauncher-App" title="win0" // ATlauncher startup screen
+	match app-id="org.gnome.NautilusPreviewer"
 	open-floating true
 }
 
@@ -126,6 +128,13 @@ window-rule {
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
     block-out-from "screencast"
+}
+
+// Fix passkey not working
+window-rule {
+    match app-id="^org\\.keepassxc\\.KeePassXC$" title="^KeePassXC - "
+    match app-id="^org\\.keepassxc\\.KeePassXC$" title=" - KeePassXC$"
+    open-focused true
 }
 
 // Rounded corners
