@@ -1,10 +1,10 @@
 // "/-" will comment out whole expression
 
+spawn-at-startup "xdg-desktop-portal-hyprland"
 spawn-at-startup "hypridle"
-spawn-sh-at-startup "swaybg -i ~/Bilder/Nature-Hills-Wallpaper.jpg -m fill"
+spawn-at-startup "hyprpaper"
 spawn-sh-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
-// spawn-sh-at-startup
-
+spawn-sh-at-startup "~/.config/scripts/set-darkmode.sh"
 
 screenshot-path "~/Bilder/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"
 
@@ -26,6 +26,14 @@ environment {
 	// To satisfy java applications
 	// https://github.com/Supreeeme/xwayland-satellite#java-applications
 	_JAVA_AWT_WM_NONREPARENTING "1"
+
+	// Qt darkmode
+	QT_QPA_PLATFORM "wayland"
+	QT_QPA_PLATFORMTHEME "qt6ct"
+	QT_QPA_PLATFORMTHEME_QT5 "qt5ct"
+
+	// GTK
+	//GTK_THEME "Adwaita:dark"
 }
 
 hotkey-overlay {
@@ -150,6 +158,7 @@ binds {
 	Mod+T				{ spawn "kitty"; }
 	Mod+D				{ spawn "fuzzel"; }
 	Mod+F				{ spawn "firefox"; }
+	
 	Mod+Shift+F			{ spawn-sh "firefox --private-window"; }
 	Mod+Ctrl+F			{ spawn-sh "firefox --ProfileManager"; }
 	Mod+E				{ spawn "nautilus"; }

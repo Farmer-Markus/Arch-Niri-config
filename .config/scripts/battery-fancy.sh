@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 perc=$(upower -b | grep -E 'percentage' | grep -oE '[0-9]+')
 iconName=$(upower -b | grep "icon-name:" | awk -F"'" '{print $2}')
