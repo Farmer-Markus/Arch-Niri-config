@@ -1,4 +1,4 @@
-kitty		# The terminal emulator
+foot		# The terminal emulator
 fuzzel		# The application menu
 nautilus	# The file manager
 hypridle	# Lower brightnes s/ Show lockscreen after time
@@ -24,9 +24,24 @@ wev			# Find out key/mouse names for niri config
 networkmanager # nmtui etc.
 nm-connection-editor # special networks requireing certificates
 
+kernel-modules-hook # fix annoying modules missing after kernel upgrade without restarting
+# sudo systemctl enable --now linux-modules-cleanup.service
 
 ttf-jetbrains-mono-nerd
 
+# if you want to right click -> open terminal in nautilus
+# install from aur:
+nautilus-open-any-terminal
+
+evince				# Pdf viewer
+
+
+# and run:
+# lib-compile-schemas /usr/share/glib-2.0/schemas # is this really needed??
+# gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal foot
+# gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+# gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
+# gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 
 
 # firefox disable touchpad pinch zoom: apz.gtk.touchpad_pinch.enabled = false

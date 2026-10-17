@@ -11,8 +11,9 @@ screenshot-path "~/Bilder/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"
 
 output "eDP-1" {
 	mode "1920x1080@60.020"
-	scale 1.25
+	scale 1.2
 	position x=0 y=0
+//	transform "270"
 }
 
 output "HDMI-A-2" {
@@ -69,7 +70,7 @@ gestures {
 }
 
 layout {
-	gaps 16
+	gaps 12
 	//center-focused-column "never"
 
 	focus-ring {
@@ -161,7 +162,7 @@ binds {
 	Mod+F				{ spawn "firefox"; }
 	
 	Mod+Shift+F			{ spawn-sh "firefox --private-window"; }
-	Mod+Ctrl+F			{ spawn-sh "firefox --ProfileManager"; }
+	Mod+Ctrl+F			{ spawn-sh "fuzzel --search='Firefox Profil'"; }
 	Mod+E				{ spawn "nautilus"; }
 	Mod+Shift+E 		{ spawn-sh "nautilus -w"; }
 
