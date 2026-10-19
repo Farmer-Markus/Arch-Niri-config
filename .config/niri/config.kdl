@@ -3,6 +3,7 @@
 spawn-at-startup "xdg-desktop-portal-hyprland"
 spawn-at-startup "hypridle"
 spawn-at-startup "hyprpaper"
+spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "~/.config/scripts/set-darkmode.sh"
 
