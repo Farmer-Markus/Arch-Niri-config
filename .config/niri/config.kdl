@@ -3,7 +3,7 @@
 spawn-at-startup "xdg-desktop-portal-hyprland"
 spawn-at-startup "hypridle"
 spawn-at-startup "hyprpaper"
-spawn-sh-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
+spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "~/.config/scripts/set-darkmode.sh"
 
 screenshot-path "~/Bilder/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"

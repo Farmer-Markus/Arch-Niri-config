@@ -9,7 +9,8 @@ wireplumber			# The sound interface (wpctl)
 brightnessctl		# To change the screen brightness
 util-linux			# To change airplane mode (rfkill)
 xwayland-satellite	# Support for xwayland
-hyprpolkitagent
+gnome-polkit
+wl-clipboard
 
 mako		# Notifications
 hyprpaper		# Desktop background support
