@@ -1,9 +1,12 @@
+# for previously installed envs
 sudo systemctl disable --now power-profiles-daemon
 sudo systemctl mask power-profiles-daemon
 
 sudo pacman -S tlp
 sudo systemctl enable --now tlp
 
+# Set nautilus terminal
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal foot
 
 
 

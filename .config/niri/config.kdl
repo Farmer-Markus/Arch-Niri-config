@@ -4,12 +4,13 @@ spawn-at-startup "xdg-desktop-portal-hyprland"
 spawn-at-startup "hypridle"
 spawn-at-startup "hyprpaper"
 spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
-spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-sh-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
 spawn-sh-at-startup "~/.config/scripts/set-darkmode.sh"
 
 screenshot-path "~/Bilder/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"
 
 
+// Thinkpad internal
 output "eDP-1" {
 	mode "1920x1080@60.020"
 	scale 1.2
@@ -17,11 +18,27 @@ output "eDP-1" {
 //	transform "270"
 }
 
+// Thinkpad HDMI
 output "HDMI-A-2" {
 	// mode custom=true "1900x1800@60"
 	mode "1920x1080@60.000"
 	scale 1.75
 	position x=1536 y=0 // 1920 / 1.25 // resolution divided by scale
+}
+
+// Pc DP (main)
+output "DP-3" {
+	mode "1920x1200@59.950"
+	scale 1
+	position x=0 y=0
+}
+
+// Pc vga (2.)
+output "DP-2" {
+	// mode custom=true "1900x1800@60"
+	mode "1024x768@60.004"
+	scale 0.75
+	position x=1365 y=0
 }
 
 environment {
@@ -56,8 +73,8 @@ input {
 		// accel-speed 0.3
 	}
 
-	mouse {
-		//natural-scroll
+	/-mouse {
+		// natural-scroll
 	}
 
 	// warp-mouse-to-focus
@@ -157,7 +174,7 @@ window-rule {
 // Use 'wev' to find out what keys are called
 binds {
 	// Applications
-	Mod+Shift+ssharp	{ show-hotkey-overlay; }
+	Mod+Shift+ssharp		{ show-hotkey-overlay; }
 	Mod+T				{ spawn "foot"; }
 	Mod+D				{ spawn "fuzzel"; }
 	Mod+F				{ spawn "firefox"; }
@@ -165,60 +182,67 @@ binds {
 	Mod+Shift+F			{ spawn-sh "firefox --private-window"; }
 	Mod+Ctrl+F			{ spawn-sh "fuzzel --search='Firefox Profil'"; }
 	Mod+E				{ spawn "nautilus"; }
-	Mod+Shift+E 		{ spawn-sh "nautilus -w"; }
+	Mod+Shift+E 			{ spawn-sh "nautilus -w"; }
 
 
 	Mod+C 				{ close-window; }
-	// Mod+				{ toggle-overview; }
+	// Mod + btn left of 1 (german layout) [^]
+	Mod+dead_circumflex		{ toggle-overview; }
 	Mod+Q 				{ center-window; }
 
 	// Windows
-	Mod+Left			{ focus-column-left; }
+	Mod+Left			{ focus-column-or-monitor-left; }
 	Mod+Down			{ focus-window-down; }
 	Mod+Up				{ focus-window-up; }
-	Mod+Right			{ focus-column-right; }
+	Mod+Right			{ focus-column-or-monitor-right; }
 	
-	Mod+Ctrl+Left		{ move-column-left; }
-	Mod+Ctrl+Down		{ move-window-down; }
+	Mod+WheelScrollUp		{ focus-column-left; }
+	Mod+WheelScrollDown		{ focus-column-right; }
+	
+	Mod+Ctrl+Left			{ move-column-left; }
+	Mod+Ctrl+Down			{ move-window-down; }
 	Mod+Ctrl+Up			{ move-window-up; }
-	Mod+Ctrl+Right		{ move-column-right; }
+	Mod+Ctrl+Right			{ move-column-right; }
 
 	Mod+Shift+Right			{ set-column-width "+50"; }
 	Mod+Shift+Left			{ set-column-width "-50"; }
-	Mod+Shift+Ctrl+Right	{ set-column-width "+5"; }
+	Mod+Shift+Ctrl+Right		{ set-column-width "+5"; }
 	Mod+Shift+Ctrl+Left		{ set-column-width "-5"; }
 
 	Mod+Return			{ maximize-column; }
-	Mod+Ctrl+Return		{ fullscreen-window; }
-	Mod+Shift+Return	{ maximize-window-to-edges; }
+	Mod+Ctrl+Return			{ fullscreen-window; }
+	Mod+Shift+Return		{ maximize-window-to-edges; }
 	Mod+V				{ toggle-window-floating; }
 
 	// Monitors
-	Mod+Alt+Left		{ focus-monitor-left; }
-	Mod+Alt+Down		{ focus-monitor-down; }
+	Mod+Alt+Left			{ focus-monitor-left; }
+	Mod+Alt+Down			{ focus-monitor-down; }
 	Mod+Alt+Up			{ focus-monitor-up; }
-	Mod+Alt+Right		{ focus-monitor-right; }
+	Mod+Alt+Right			{ focus-monitor-right; }
 
-	Mod+Alt+Ctrl+Left	{ move-column-to-monitor-left; }
-	Mod+Alt+Ctrl+Down	{ move-column-to-monitor-down; }
-	Mod+Alt+Ctrl+Up		{ move-column-to-monitor-up; }
-	Mod+Alt+Ctrl+Right	{ move-column-to-monitor-right; }
+	Mod+Alt+Ctrl+Left		{ move-column-to-monitor-left; }
+	Mod+Alt+Ctrl+Down		{ move-column-to-monitor-down; }
+	Mod+Alt+Ctrl+Up			{ move-column-to-monitor-up; }
+	Mod+Alt+Ctrl+Right		{ move-column-to-monitor-right; }
 
 	// Workspaces
-	Mod+Page_Down      	{ focus-workspace-down; }
-    Mod+Page_Up       	{ focus-workspace-up; }
-    Mod+Ctrl+Page_Down	{ move-window-to-workspace-down; }
-    Mod+Ctrl+Page_Up	{ move-window-to-workspace-up; }
+	Mod+Page_Down      		{ focus-workspace-down; }
+    	Mod+Page_Up       		{ focus-workspace-up; }
+    	Mod+Ctrl+Page_Down		{ move-window-to-workspace-down; }
+    	Mod+Ctrl+Page_Up		{ move-window-to-workspace-up; }
+    	
+    	Mod+Ctrl+WheelScrollUp		{ focus-workspace-up; }
+    	Mod+Ctrl+WheelScrollDown	{ focus-workspace-down; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-window; }
+    	Print				{ screenshot; }
+    	Ctrl+Print			{ screenshot-window; }
 
 	// Free mouse/keyboard of application like virtualbox
-	Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-	Mod+Shift+P { power-off-monitors; }
-    Mod+Ctrl+Alt+Delete { quit; }
+	Mod+Escape allow-inhibiting=false	{ toggle-keyboard-shortcuts-inhibit; }
+	Mod+Shift+P				{ power-off-monitors; }
+    	Mod+Ctrl+Alt+Delete			{ quit; }
 	
-	Super+L hotkey-overlay-title="Show lockscreen" { spawn "hyprlock"; }
+	Super+L hotkey-overlay-title="Show lockscreen"		{ spawn "hyprlock"; }
 
 	// Special laptop buttons
 	// "allow-when-locked=true" allow commands when session is locked
@@ -234,7 +258,7 @@ binds {
 
 	XF86AudioMicMute allow-when-locked=true			{ spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-	XF86MonBrightnessDown allow-when-locked=true	{ spawn-sh "brightnessctl set 5%-"; }
+	XF86MonBrightnessDown allow-when-locked=true		{ spawn-sh "brightnessctl set 5%-"; }
 	XF86MonBrightnessUp allow-when-locked=true		{ spawn-sh "brightnessctl set 5%+"; }
 
 	// XF86Display
