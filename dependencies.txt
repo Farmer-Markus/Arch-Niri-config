@@ -12,6 +12,8 @@ xwayland-satellite	# Support for xwayland
 gnome-polkit
 wl-clipboard
 wl-clip-persist
+xdg-desktop-portal-hyprland # systemctl --user restart xdg-desktop-portal
+
 
 mako		# Notifications
 hyprpaper		# Desktop background support
